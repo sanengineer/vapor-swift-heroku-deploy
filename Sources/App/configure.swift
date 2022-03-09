@@ -10,10 +10,10 @@ public func configure(_ app: Application) throws {
         return print("No Env Server Hostname")
     }
 
-    var postgresConfig = PostgresConfiguration(url: databaseUrl) {
-        postgresConfig.tlsConfiguration = .makeClientConfiguration()
-        postgresConfig.tlsConfiguration?.certificateVerification = .none
-    }
+    var postgresConfig = PostgresConfiguration(url: databaseUrl) 
+    postgresConfig.tlsConfiguration = .makeClientConfiguration()
+    postgresConfig.tlsConfiguration?.certificateVerification = .none
+    
 
     app.databases.use(.postgres(
         configuration: postgresConfig
