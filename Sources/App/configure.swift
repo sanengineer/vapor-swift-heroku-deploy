@@ -6,17 +6,19 @@ import Vapor
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-   
+    guard let databaseUrl = Environment.get("DATABASE_URL") else {
+        return print("No Env Server Hostname")
+    }
 
-   if let databaseUrl = Environment.get("DATABASE_URL"),  var postgresConfig = PostgresConfiguration(url: databaseUrl) {
+    var postgresConfig = PostgresConfiguration(url: databaseUrl) {
         postgresConfig.tlsConfiguration = .makeClientConfiguration()
         postgresConfig.tlsConfiguration?.certificateVerification = .none
-        app.databases.use(.postgres(
-            configuration: postgresConfig
-        ), as: .psql)
-    } else {
-        return print("No DATABASE_URL Set")
     }
+
+    app.databases.use(.postgres(
+        configuration: postgresConfig
+    ), as: .psql)
+
 
     // app.databases.use(.postgres(
     //     hostname: Environment.get("DATABASE_HOST") ?? "localhost",
