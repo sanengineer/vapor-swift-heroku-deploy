@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug Run",
+      "program": "${workspaceFolder:vapor-swift-heroku-deploy}/.build/debug/Run",
+      "args": [],
+      "cwd": "${workspaceFolder:vapor-swift-heroku-deploy}",
+      "preLaunchTask": "swift: Build Debug Run"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Release Run",
+      "program": "${workspaceFolder:vapor-swift-heroku-deploy}/.build/release/Run",
+      "args": [],
+      "cwd": "${workspaceFolder:vapor-swift-heroku-deploy}",
+      "preLaunchTask": "swift: Build Release Run"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test vapor-swift-heroku-deploy",
+      "program": "/Applications/Xcode.app/Contents/Developer/usr/bin/xctest",
+      "args": [".build/debug/vapor-swift-heroku-deployPackageTests.xctest"],
+      "cwd": "${workspaceFolder:vapor-swift-heroku-deploy}",
+      "preLaunchTask": "swift: Build All"
+    }
+  ]
+}

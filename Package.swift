@@ -1,10 +1,10 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.4.0
 import PackageDescription
 
 let package = Package(
-    name: "vapor-heroku-deploy",
+    name: "vapor-swift-heroku-deploy",
     platforms: [
-       .macOS(.v12)
+      .macOS(.v10_15)
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
